@@ -4,4 +4,4 @@
 
 To-Do
 
- Create a live table utilizing an (or many) API key(s).
+ Create a live table utilizing API key(s).
