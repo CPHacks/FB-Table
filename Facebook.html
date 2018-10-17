@@ -15,6 +15,9 @@
         
         
     <style>
+        th {
+            text-align: center;
+        }
      div#paragraph {
         
         margin-top: 100px;
@@ -183,73 +186,37 @@
         </p>
             <p>&nbsp;
             </p>
-         <div class="card">
-  <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Current Facebook Standings</h3>
-  <div class="card-body">
-    <div id="table" class="table-editable">
-      
-      <table class="table table-bordered table-responsive-md table-striped text-center" id="table">
-        <tr>
-          <th class="text-center">OVERALL</th>
-          <th class="text-center">              </th>
-          <th class="text-center">FINANCIALS</th>
-          
-        </tr>
-        <tr>
-          <td class="pt-3-half" contenteditable="true">Beta:</td>
-          <td class="pt-3-half" contenteditable="true">0.48</td>
-          <td class="pt-3-half" contenteditable="true">P/E (TTM):</td>
-            <td class="pt-3-half" contenteditable="true">2.74</td>
-          
-          <td class="pt-3-half">
-            
-          </td>
-          
-        </tr>
-        <!-- This is our clonable table line -->
-        <tr>
-          <td class="pt-3-half" contenteditable="true">Market Cap(Mil.):</td>
-          <td class="pt-3-half" contenteditable="true">$454,246.09</td>
-          <td class="pt-3-half" contenteditable="true">EPS (TTM):</td>
-          <td class="pt-3-half" contenteditable="true">7.24</td>
-          <td class="pt-3-half">
-          </td>
          
-        </tr>
-        <!-- This is our clonable table line -->
-        <tr>
-          <td class="pt-3-half" contenteditable="true">Shares Outstanding(Mil.):</td>
-          <td class="pt-3-half" contenteditable="true">2,887.22</td>
-          <td class="pt-3-half" contenteditable="true">ROI:</td>
-          <td class="pt-3-half" contenteditable="true">27.34</td>
-          <td class="pt-3-half">
-            
-          </td>
-          
-        </tr>
-        <!-- This is our clonable table line -->
-        <tr class="hide">
-          <td class="pt-3-half" contenteditable="true">Dividend:</td>
-          <td class="pt-3-half" contenteditable="true">--</td>
-          <td class="pt-3-half" contenteditable="true">ROE:</td>
-          <td class="pt-3-half" contenteditable="true">29.26</td>
-          <td class="pt-3-half">
-            
-          </td>
-          
-
-            <button type= "submit" class="button" onclick="saveTable()">
+  <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Current Facebook Standings</h3>
+         
+  <table style="width:100%" id="stocksTable">
+   <tr>
+    <th>Beta:</th>
+    <th >Market Cap(Mil.):</th> 
+    <th >Dividend:</th>
+    <th>Yield(%):</th>
+    
+  </tr>
+  <tr>
+    
+    <td  contenteditable="true"></td>
+    <td  contenteditable="true"></td>
+    <td  contenteditable="true"></td>
+    <td  contenteditable="true"></td>
+   
+    
+  </tr>
+</table>
+        <button type= "submit" class="button" onclick="saveTable()">
                 Save
             </button>
 
             <button type= "submit" class="button" onclick="LoadTable()">
                 Load
+            
             </button>
-        </tr>
-      </table>
     </div>
-  </div>
-</div>
+  
          
          <p>End-to-end encrypted communications, by contrast, go directly from one user to another user without revealing anything intelligible to providers. </p>
          <p>&nbsp;
@@ -283,7 +250,7 @@
             “A messaging platform is excluded,” maintains Gidari, who is not involved in the Fresno case.
         </p>
          
-        </div>
+        
     <div class="sourceMessage">
     <p>
             Please do make sure to check out the "Main Source" link in the side panel. It can also be found <span><a href="https://www.reuters.com/article/us-facebook-encryption-exclusive/exclusive-u-s-government-seeks-facebook-help-to-wiretap-messenger-sources-idUSKBN1L226D">here</a></span>.
@@ -300,7 +267,7 @@ function w3_close() {
 
 function saveTable()
 {
-     var table = document.getElementById("table");
+     var table = document.getElementById("stocksTable");
      var num = table.rows[0].cells.length; // amount of rows
      var data = '';
      for(var i = 1; i < table.rows.length; i++)
@@ -310,9 +277,9 @@ function saveTable()
                 data += table.rows[i].cells[j].innerHTML + "~";
           }
      }
-   data += table.rows.length + ";" + table.rows[0].cells.length + ";" + data.substring(0, data.length);
-   setCookie("data", data, 60);
-   alert("Cookie Saved");
+   data += (table.rows.length-1) + ";" + table.rows[0].cells.length + ";" + data.substring(0, data.length);
+   setCookie("informaton", data, 60);
+   alert("Cookie saved.");
 }
 
 function setCookie(cname, cvalue, exdays) {
@@ -325,24 +292,22 @@ function setCookie(cname, cvalue, exdays) {
 
 function LoadTable()
 {
-    var data = getCookie("data");
+    var data = getCookie("information");
   if(data != "")
   {
-    alert("The table says:" + data);
+    alert("The table says:" + "" + data);
   }
   else
   {
-    alert("There is no data in the table");
+    alert("Unable to load information.");
   }
 }
 
-function getCookie(cname)
-{
+function getCookie(cname) {
     var name = cname + "=";
   var decodedCookie = decodeURIComponent(document.cookie);
   var ca = decodedCookie.split(';');
-  for(var i = 0; i < ca.length; i++) 
-  {
+  for(var i = 0; i < ca.length; i++) {
         var c = ca[i];
         while (c.charAt(0) == ' ') 
         {
@@ -355,9 +320,8 @@ function getCookie(cname)
   }
     return "";
 }
-
         </script>
->
+    </body>
 </html>
 <!--
 
